@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package options;
+option go_package = "github.com/x-mod/options";
+
+import "google/protobuf/descriptor.proto";
+
+
+message ServiceOption {
+	string version = 1;
+}
+
+message HttpOption {
+    string method = 1;
+    string uri = 2;
+}
+
+// 扩展protobuf自定义service option
+extend google.protobuf.ServiceOptions {
+    ServiceOption service = 91020818;
+}
+
+// 扩展protobuf自定义method option
+extend google.protobuf.MethodOptions {
+    HttpOption http = 91020819;
+}
